@@ -1,0 +1,22 @@
+if [ $# -eq 0 ]
+then
+
+	echo "Usage: phone searchfor [...searchfor]"
+	echo "(You didn't tell me what you want to search for.)"
+
+else
+condition=""	
+for ele in $@
+do
+
+
+condition="$condition$ele|"
+
+done
+
+condition=${condition:0:-1}
+egrep -i  "$condition" mydata | awk -f display.awk
+
+fi
+
+exit 0 
